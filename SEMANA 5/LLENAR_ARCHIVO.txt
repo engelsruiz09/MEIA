@@ -1,0 +1,21 @@
+public boolean LlenarArchivo(String strPath,String strContenido,String strError)
+    {
+        File Archivo = new File(strPath);
+        
+        try
+        {
+                FileWriter Escribir = new FileWriter(Archivo,true);
+                BufferedWriter bw = new BufferedWriter(Escribir);
+                bw.write(strContenido+ System.getProperty( "line.separator" ));
+                bw.close();
+                Escribir.close();
+                
+                return true;
+        }
+        catch(IOException ex)
+        {
+            strError= ex.getMessage();
+            return false;
+        } 
+        
+    }

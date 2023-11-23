@@ -1,0 +1,49 @@
+public boolean Obtener(String strPath,String strError)
+    {
+        File Archivo = new File(strPath);
+        if(Archivo.exists()==true)
+        {
+            FileReader LecturaArchivo;
+            try {
+                LecturaArchivo = new FileReader(Archivo);
+                BufferedReader LeerArchivo = new BufferedReader(LecturaArchivo);
+                String Linea="";
+                try {
+                    Linea=LeerArchivo.readLine();
+                    String[] split;
+                    DefaultListModel modeloNombre= new DefaultListModel(); 
+                    DefaultListModel modeloApellido= new DefaultListModel(); 
+                    while(Linea != null)
+                    {
+                        if(!"".equals(Linea))
+                        {
+                            split=Linea.split(",");
+                            modeloNombre.addElement(split[0]);
+                            modeloApellido.addElement(split[1]);
+                        }
+                        Linea=LeerArchivo.readLine();
+                    }
+
+                    LecturaArchivo.close();
+                    LeerArchivo.close();
+                    
+                    LNombre.setModel(modeloNombre);
+                    LApellido.setModel(modeloApellido);
+                    strError="";
+                    return true;
+                    
+                } catch (IOException ex) {
+                    strError= ex.getMessage();
+                    return false;
+                }
+            } catch (FileNotFoundException ex) {
+                strError= ex.getMessage();
+                return false;
+            }            
+        }
+        else
+        {
+            strError="No existe el archivo";
+            return false;
+        }
+    }

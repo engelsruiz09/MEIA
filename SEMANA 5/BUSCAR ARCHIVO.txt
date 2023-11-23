@@ -1,0 +1,12 @@
+JFileChooser dialogo = new JFileChooser();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de Texto", "txt");
+        File ficheroImagen;
+        String rutaArchivo;
+        dialogo.setFileFilter(filtro);
+        int valor = dialogo.showOpenDialog(this);
+        if (valor == JFileChooser.APPROVE_OPTION) {
+            ficheroImagen = dialogo.getSelectedFile();
+            rutaArchivo = ficheroImagen.getPath();
+
+                
+            TFRuta.setText(rutaArchivo);
